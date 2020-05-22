@@ -24,9 +24,12 @@ try {
       {
     
       let result = jsonFile.find((el,i) => {
-        let path = url.parse(el.url).path;
+        let urlWithoutQuery = url.parse(el.url).pathname;
+        let urlWithQuery = url.parse(el.url).path
 
-        return path == req.url && el.method == req.method;
+        
+
+        return( urlWithoutQuery == req.path || urlWithQuery == req.url  ) && el.method == req.method;
       });
 
       if (result) {
